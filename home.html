@@ -1,0 +1,571 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Music</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+ * {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #121212;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 196px;
+  background-color: #000000;
+  padding: 24px;
+}
+.sidebar .logo img {
+  width: 100px;
+}
+.sidebar .navigation ul {
+  list-style: none;
+  margin-top: 20px;
+}
+.sidebar .navigation ul li {
+  padding: 10px 0px;
+}
+.sidebar .navigation ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+.sidebar .navigation ul li a:hover,
+.sidebar .navigation ul li a:active,
+.sidebar .navigation ul li a:focus {
+  color: #ffffff;
+}
+.sidebar .navigation ul li a:hover .fa,
+.sidebar .navigation ul li a:active .fa,
+.sidebar .navigation ul li a:focus .fa {
+  color: #b3b3b3;
+}
+.sidebar .navigation ul li .fa {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.sidebar .navigation ul li a:hover .fa:hover,
+.sidebar .navigation ul li a:hover .fa:active,
+.sidebar .navigation ul li a:hover .fa:focus {
+  color: #ffffff;
+}
+.sidebar .policies {
+  position: absolute;
+  bottom: 100px;
+}
+.sidebar .policies ul {
+  list-style: none;
+}
+.sidebar .policies ul li {
+  padding-bottom: 5px;
+}
+.sidebar .policies ul li a {
+  color: #b3b3b3;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 10px;
+}
+.sidebar .policies ul li a:hover,
+.sidebar .policies ul li a:active,
+.sidebar .policies ul li a:focus {
+  text-decoration: underline;
+}
+
+.main-container {
+  margin-left: 245px;
+  margin-bottom: 100px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #101010;
+  padding: 14px 30px;
+}
+.topbar .prev-next-buttons button {
+  color: #7a7a7a;
+  cursor: not-allowed;
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  font-size: 18px;
+  border: 0px;
+  background-color: #090909;
+  margin-right: 10px;
+}
+.topbar .navbar {
+  display: flex;
+  align-items: center;
+}
+.topbar .navbar ul {
+  list-style: none;
+}
+.topbar .navbar ul li {
+  display: inline-block;
+  margin: 0px 8px;
+  width: 70px;
+}
+.topbar .navbar ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.topbar .navbar ul li a:hover,
+.topbar .navbar ul li a:active,
+.topbar .navbar ul li a:focus {
+  color: #ffffff;
+  font-size: 15px;
+}
+.topbar .navbar ul li.divider {
+  color: #ffffff;
+  font-size: 26px;
+  margin: 0px 20px;
+  width: auto;
+}
+.topbar .navbar button {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 30px;
+  border: 0px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.topbar .navbar button:hover,
+.topbar .navbar button:active,
+.topbar .navbar button:focus {
+  background-color: #f2f2f2;
+}
+.spotify-playlists {
+  padding: 20px 40px;
+}
+.spotify-playlists h2 {
+  color: #ffffff;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.spotify-playlists .list {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+.spotify-playlists .list .item {
+  min-width: 140px;
+  width: 160px;
+  padding: 15px;
+  background-color: #181818;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover {
+  background-color: #252525;
+}
+.spotify-playlists .list .item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.spotify-playlists .list .item .play {
+  position: relative;
+}
+.spotify-playlists .list .item .play .fa {
+  position: absolute;
+  right: 10px;
+  top: -60px;
+  padding: 18px;
+  background-color: #1db954;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover .play .fa {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+.spotify-playlists .list .item h4 {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotify-playlists .list .item p {
+  color: #989898;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.spotify-playlists hr {
+  margin: 70px 0px 0px;
+  border-color: #636363;
+}
+
+.preview {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #ae2896, #509bf5);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.preview h6 {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.preview p {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.preview button {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 30px;
+  border: 0px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+   </style>
+</head>
+
+   <body>
+
+    <div class="sidebar">
+      <div class="logo">
+        <a href="#">
+          <img src="https://shop.palestinetoyota.com/wp-content/uploads/sites/40/2017/06/Screenshot-2017-06-19-15.41.01-e1497904943172.png"alt="Logo" />
+        </a>
+      </div>
+
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="fa fa-home"></span>
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="fa fa-search"></span>
+              <span>Search</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="fa fas fa-book"></span>
+              <span>Your Library</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="fa fas fa-plus-square"></span>
+              <span> Playlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="fa fas fa-heart"></span>
+              <span>Liked Songs</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="policies">
+        <ul>
+          <li>
+            <a href="#">Cookies</a>
+          </li>
+          <li>
+            <a href="#">Privacy</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+      <div class="main-container">
+      <div class="topbar">
+        <div class="prev-next-buttons">
+          <button type="button" class="fa fas fa-chevron-left"></button>
+          <button type="button" class="fa fas fa-chevron-right"></button>
+        </div>
+
+        <div class="navbar">
+     
+      < a href="#"> <button type="button">Search</button>
+        </div>
+      </div>
+
+      <div class="spotify-playlists">
+        <h2>Bugs Slayers - Playlists</h2>
+
+        <div class="list">
+             <div class="item">
+            <img src="data:image/jpeg;base64,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" />
+            <div class="play">
+              <a href="pavi5.html"><span class="fa fa-play"></span>
+            </a></div>
+            <h4>Top Hits</h4>
+            <p>New Music from Lil Baby, Juice WRLD an...</p>
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCXA9SYOwMf4DRvD5CE4aAs1h4c92SR4FcEmXbMnQQ1Z-EcMoHzZxps1iybdcXtTzg_20&usqp=CAU" />
+            <div class="play">
+               <a href="###"><span class="fa fa-play"></span>
+            </a></div>
+            <h4>Aniruth ravichander</h4>
+          
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_n3Z4s5XlmRA497HUk5c6HQ_6txJKlF1WMIsVsbuBSxWqk7scM3iqgkFCMkUCJ950Ye0&usqp=CAU" />
+            <div class="play">
+              <a href="###"><span class="fa fa-play"></span>
+            </a>
+            <h4>Hiphop Tamizha</h4>
+         
+          </div>
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7dxB3icav8l_2F_7nFGWcHGOZwHOcKKLRyWkuqPqEHczJqmtlhv4L9Y8PScz-3LxKv8&usqp=CAU" />
+            <div class="play">
+              <a href="###"><span class="fa fa-play"></span>
+            </a></div>
+            <h4>AR Rahman</h4>
+        
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgqzZGhqR0Ip8fZ52hM45dpVgTyDJYTtDFpznX1B0yfqX6EuEs0HcKpTk3H1zPqG9EUrQ&usqp=CAU" />
+            <div class="play">
+              <a href="###"><span class="fa fa-play"></span>
+            </a></div>
+            <h4>GV Prakash</h4>
+        
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RE8eEpmgl0GuRSS48ALlbJ_4Xi21d4fUHwVhDKKACyfIsXDTg-5XtgeVGS4GjtkAiCE&usqp=CAU" />
+            <div class="play">
+              <a href="###"><span class="fa fa-play"></span>
+           </a> </div>
+            <h4>Sid Sriram</h4>
+          
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdyGKstYpn2tknDLVVbIJ3sxDi4ZIhxi8EmoVbOXnQHo_3SEFWq6imayNyVqKi_NCNoG4&usqp=CAU" />
+            <div class="play">
+              <a href="songpage5.html"><span class="fa fa-play"></span>
+           </a></div>
+            <h4>Dhanush</h4>
+       
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8BljfEkkELDnVXeaZA07zpfhcWLkos23GAdYwNZ2kzX7-nCvRQNi4YIKyqUxMDtiCwvc&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Simbu</h4>
+     
+          </div>
+        </div>
+      </div>
+
+      <div class="spotify-playlists">
+        <h2>Focus</h2>
+        <div class="list">
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0oSwwMg-TMOev-7jwAcuP5YWFaDR2DEM6V630WbJD1mXmfZ6IidGVb2DimJ77HgyJ680&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Vijay</h4>
+        
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-nlyHxuhI1HtEZx3MUj5BBI_kFryTZlrjSGOTuVun2mwb5SWY0AFnUOUkfAY928W0UHs&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Yuvan </h4>
+           
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzF4ApoVk6hkaMsBSydZ423FX6ywGBdF494XoLrV5mZNchr3g_HO3KO7_M9zte4qRMqrg&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Ilayaraja</h4>
+         
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjHv2ZiAyfMfH5jvZcr9l1OJvPKyfaiq3rHedeDSuQ6M5smiZYJxpoTyBypkGLt0UtjzU&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+              </div>
+            <h4>Chinmayi</h4>
+      
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfPNrN_gW19TflLf0svsFq7UpQz-boc_OiejTCEuwmXyJJi31jcc-5xTTMM0WQq9f69q4&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Shreya Ghoshal</h4>
+     
+          </div>
+         
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1laqUl2Csk7XmX9wBymTooBsbyoVFVeVfWcTMR9WWNsouk5elSuu5ddaBJiWmavhN40c&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Vijay Antony</h4>
+        
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyqwL456hah2VcS6SjgAwGUtwkN3McwzV3HQKE1bGUZn9BuTJ3eEVgv8Y6iqmiQDgqD3Q&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Vijay Yesudas</h4>
+          
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYNfK2WLaRUVm0mQRx23jWD0RMyJ5DmWrqjwyCuDqmhTk-DqOFXXQRVDvxBRwCkBQ1jvQ&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>S.Janaki</h4>
+        
+          </div>
+        </div>
+      </div>
+
+      <div class="spotify-playlists">
+        <h2>Mood</h2>
+        <div class="list">
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sG9ryWjV0tGAJE5zeuQRe6pjU1GJArIBUS3udqddLmKsWtg0DXPcXBpeHZfhzeP5D-0&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Krish</h4>
+          
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScXwGUfWw5H0v48m0TkhxHyzBeqnZ3HLV6Vz17LXRGLK_yREBhsKurEKGyM024vCvRmf0&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Mano</h4>
+          
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3ofaT81cotamcVtdyODthxyNYquYvAfwNqrD_U8DMy5mwlqmjMsdaeo20jaIMMRJ3fwg&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Saindhavi</h4>
+        
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMsqt24B_kh4kE8uGniI6GiYj7jVQXLLrrqy5WLcdI6cD3_l0IYNuUUTGdeF_awO7dSXs&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Karthik</h4>
+         
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5iORC_KYrT0vw8pvXC9VKdWlY1-F6B7E06-vA_6Vrldc4ZFklVK0clT-uITjWMlMmpJg&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>chithra</h4>
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUUSfgWTftUhva8mCeRComH2C_9i3UGdDObegUTARYqwBzpnzaaf71zwPSJ67yB7nd8hI&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Sujatha</h4>
+     
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDuLLEJWIFLcoMxwsj4M96u_jOXw4hmnZUxhooyuVQkqHdtrcNzH_45HPtxUaMxr1KZU4&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Unni Krishnan</h4>
+           
+          </div>
+
+          <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKlBW-GmAoPJG1_XSiVuicNwyVeyIag4h2bimVTQ0WrW0M5d_KexQZfi528Rg0SRwr6Ps&usqp=CAU" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Srinivas</h4>
+  
+          </div>
+        </div>
+        <hr>
+      </div>
+    <script
+      src="https://kit.fontawesome.com/23cecef777.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
